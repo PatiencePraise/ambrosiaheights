@@ -1,0 +1,1164 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations | Ambrosia Heights Entebbe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header & Navigation - Consistent with Home Page */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: #2a5c3d;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hotel-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2a5c3d;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2a5c3d;
+        }
+
+        .nav-links a.active {
+            color: #2a5c3d;
+            font-weight: 600;
+        }
+
+        .booking-btn {
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .booking-btn:hover {
+            background-color: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #2a5c3d;
+        }
+
+        /* Hero Banner */
+        .page-hero {
+    margin-top: 100px;
+    height: 500px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                      url('images/room.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Accommodations Section */
+        .accommodations-section {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2a5c3d;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 18px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .room-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .room-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s;
+        }
+
+        .room-image-container {
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .room-card:hover .room-image {
+            transform: scale(1.08);
+        }
+
+        .room-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-title {
+            font-size: 26px;
+            color: #2a5c3d;
+            margin-bottom: 15px;
+        }
+
+        .room-price {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(212, 175, 55, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 26px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .amenities-icons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            justify-items: center;
+        }
+
+        .amenity-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50px;
+            position: relative;
+        }
+
+        .icon-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #2a5c3d;
+            margin-bottom: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .amenity-icon:hover .icon-circle {
+            background-color: #2a5c3d;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .amenity-name {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            opacity: 0;
+            position: absolute;
+            bottom: -30px;
+            background-color: #2a5c3d;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            font-weight: 500;
+        }
+
+        .amenity-icon:hover .amenity-name {
+            opacity: 1;
+        }
+
+        .see-details-btn {
+            margin-top: auto;
+            padding: 14px;
+            background-color: #2a5c3d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .see-details-btn:hover {
+            background-color: #1e452e;
+        }
+
+        /* Features Section */
+        .features-section {
+            background-color: #f0f7f3;
+            padding: 70px 20px;
+            margin-top: 60px;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            color: #2a5c3d;
+            margin-bottom: 15px;
+        }
+
+        /* Footer - Consistent with Home Page */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+            display: inline-block;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #d4af37;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .footer-bottom-links a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .room-image-container {
+                height: 280px;
+            }
+            
+            .amenities-icons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .rooms-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .room-image-container {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s, opacity 0.3s;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .page-hero {
+                height: 280px;
+                margin-top: 80px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .room-image-container {
+                height: 250px;
+            }
+            
+            .room-title {
+                font-size: 22px;
+            }
+            
+            .room-price {
+                font-size: 22px;
+                padding: 10px 20px;
+            }
+            
+            .amenities-icons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            .icon-circle {
+                width: 38px;
+                height: 38px;
+                font-size: 14px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .amenities-icons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            
+            .icon-circle {
+                width: 36px;
+                height: 36px;
+                font-size: 13px;
+            }
+            
+            .amenity-name {
+                font-size: 9px;
+                padding: 3px 6px;
+                bottom: -28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hotel-name {
+                font-size: 18px;
+            }
+            
+            .page-hero {
+                height: 220px;
+            }
+            
+            .hero-content h1 {
+                font-size: 24px;
+            }
+            
+            .room-image-container {
+                height: 220px;
+            }
+            
+            .room-title {
+                font-size: 20px;
+            }
+            
+            .room-price {
+                font-size: 20px;
+                padding: 8px 16px;
+            }
+            
+            .amenities-icons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+            
+            .icon-circle {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+            }
+            
+            .amenity-name {
+                font-size: 8px;
+                bottom: -26px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .amenities-icons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 4px;
+            }
+            
+            .icon-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <div class="logo">AH</div>
+                <div class="hotel-name">Ambrosia Heights Entebbe</div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="accommodations.html" class="active">Accommodation</a></li>
+                <li><a href="#">Spa</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">More</a></li>
+                <li><button class="booking-btn">Booking</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Our Accommodations</h1>
+            <p>Experience luxury and comfort in our carefully designed rooms and suites, each offering unique amenities and breathtaking views.</p>
+        </div>
+    </section>
+
+    <!-- Accommodations Section -->
+    <section class="accommodations-section">
+        <h2 class="section-title">Choose Your Perfect Stay</h2>
+        <p class="section-subtitle">From cozy double rooms to luxurious suites with balconies, we have accommodations to suit every need and preference.</p>
+        
+        <div class="rooms-grid">
+            <!-- Budget Double Room - Top Left -->
+            <div class="room-card" data-room="double">
+                <div class="room-image-container">
+                    <img src="images/balcony.jpg" alt="Budget Double Room" class="room-image">
+                    <div class="room-price">$55</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title"> Budget Double Room</h3>
+                    
+                    <div class="amenities-icons">
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <span class="amenity-name">Two Beds</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="amenity-name">Alarm Clock</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <span class="amenity-name">Desk & Chair</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-shower"></i>
+                            </div>
+                            <span class="amenity-name">Bathroom</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <span class="amenity-name">Free Water</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <span class="amenity-name">Amenities</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <span class="amenity-name">A/C</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-glass-whiskey"></i>
+                            </div>
+                            <span class="amenity-name">Mini Bar</span>
+                        </div>
+                    </div>
+                    
+                    <button class="see-details-btn">See Details & Book</button>
+                </div>
+            </div>
+            
+            <!-- Budget Twin Room - Top Right -->
+            <div class="room-card" data-room="twin">
+                <div class="room-image-container">
+                    <img src="images/twwin.jpg" alt="Budget Twin Room" class="room-image">
+                    <div class="room-price">$57</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Budget Twin Room</h3>
+                    
+                    <div class="amenities-icons">
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <span class="amenity-name">Two Beds</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="amenity-name">Alarm Clock</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <span class="amenity-name">Work Desk</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-shower"></i>
+                            </div>
+                            <span class="amenity-name">Bathroom</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <span class="amenity-name">Free Water</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <span class="amenity-name">Amenities</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <span class="amenity-name">A/C</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-glass-whiskey"></i>
+                            </div>
+                            <span class="amenity-name">Mini Bar</span>
+                        </div>
+                    </div>
+                    
+                    <button class="see-details-btn">See Details & Book</button>
+                </div>
+            </div>
+            
+            <!-- Deluxe Suite - Bottom Left -->
+            <div class="room-card" data-room="deluxe">
+                <div class="room-image-container">
+                    <img src="images/deluxe.jpg" alt="Deluxe Suite" class="room-image">
+                    <div class="room-price">$67</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Deluxe Suite</h3>
+                    
+                    <div class="amenities-icons">
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <span class="amenity-name">King Bed</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="amenity-name">Alarm Clock</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <span class="amenity-name">Executive Desk</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-shower"></i>
+                            </div>
+                            <span class="amenity-name">Luxury Bath</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <span class="amenity-name">Free Drinks</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <span class="amenity-name">Premium</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <span class="amenity-name">Climate Ctrl</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-glass-whiskey"></i>
+                            </div>
+                            <span class="amenity-name">Mini Bar</span>
+                        </div>
+                    </div>
+                    
+                    <button class="see-details-btn">See Details & Book</button>
+                </div>
+            </div>
+            
+            <!-- Double Room with Balcony - Bottom Right -->
+            <div class="room-card" data-room="balcony">
+                <div class="room-image-container">
+                    <img src="images/balcony.jpg" alt="Double Room with Balcony" class="room-image">
+                    <div class="room-price">$46</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Double Room with Balcony</h3>
+                    
+                    <div class="amenities-icons">
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <span class="amenity-name">Queen Bed</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="amenity-name">Alarm Clock</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <span class="amenity-name">Lounge Chair</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-shower"></i>
+                            </div>
+                            <span class="amenity-name">Bathroom</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <span class="amenity-name">Free Water</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <span class="amenity-name">Amenities</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <span class="amenity-name">A/C</span>
+                        </div>
+                        <div class="amenity-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-glass-whiskey"></i>
+                            </div>
+                            <span class="amenity-name">Mini Bar</span>
+                        </div>
+                    </div>
+                    
+                    <button class="see-details-btn">See Details & Book</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
+            <h2 class="section-title">Why Choose Our Accommodations</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="feature-title">Premium Quality</h3>
+                    <p>All rooms feature high-quality furnishings, luxury bedding, and premium amenities.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="feature-title">High-Speed WiFi</h3>
+                    <p>Complimentary high-speed internet access available in all rooms and common areas.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Safety & Security</h3>
+                    <p>24/7 security, electronic key card access, and in-room safes for your peace of mind.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="feature-title">Stunning Views</h3>
+                    <p>Many rooms offer panoramic views of the city, gardens, or Lake Victoria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Consistent with Home Page -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Ambrosia Heights</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Hotel</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Restaurant</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Stay</h3>
+                <ul class="footer-links">
+                    <li><a href="accommodations.html">Budget Double Room</a></li>
+                    <li><a href="accommodations.html">Budget Twin Room</a></li>
+                    <li><a href="accommodations.html">Deluxe Suite</a></li>
+                    <li><a href="accommodations.html">Double Room with Balcony</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Let's Talk</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Check Availability</a></li>
+                </ul>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ambrosia Heights Entebbe. All rights reserved.</p>
+            <ul class="footer-bottom-links">
+                <li><a href="#">Terms and Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Room Card Click Animation
+    const roomCards = document.querySelectorAll('.room-card');
+    
+    roomCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking on the button or icons
+            if (e.target.classList.contains('see-details-btn') || 
+                e.target.closest('.see-details-btn') || 
+                e.target.classList.contains('icon-circle') ||
+                e.target.classList.contains('amenity-icon')) {
+                return;
+            }
+            
+            // Add bounce effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Get room type
+            const roomType = this.getAttribute('data-room');
+            const roomTitle = this.querySelector('.room-title').textContent;
+            const roomPrice = this.querySelector('.room-price').textContent;
+            
+            // Show room details (in a real app, this would open a modal or new page)
+            alert(`Selected: ${roomTitle}\nPrice: ${roomPrice} per night\n\nClick "See Details & Book" for booking information.`);
+        });
+        
+        // Add hover effect for icons
+        const amenityIcons = card.querySelectorAll('.amenity-icon');
+        amenityIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.querySelector('.icon-circle').style.transform = 'scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.querySelector('.icon-circle').style.transform = '';
+            });
+        });
+    });
+
+    // See Details Button Click
+    const seeDetailsButtons = document.querySelectorAll('.see-details-btn');
+    
+    seeDetailsButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Add click effect
+            this.style.backgroundColor = '#1e452e';
+            setTimeout(() => {
+                this.style.backgroundColor = '';
+            }, 200);
+            
+            // Get room details
+            const roomCard = this.closest('.room-card');
+            const roomTitle = roomCard.querySelector('.room-title').textContent;
+            const roomPrice = roomCard.querySelector('.room-price').textContent;
+            const roomType = roomCard.getAttribute('data-room');
+            
+            // Store room details in localStorage to use on booking page
+            const roomDetails = {
+                type: roomType,
+                title: roomTitle,
+                price: roomPrice,
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            localStorage.setItem('selectedRoom', JSON.stringify(roomDetails));
+            
+            // Show loading animation before redirecting
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(42, 92, 61, 0.95);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                color: white;
+            `;
+            
+            loadingOverlay.innerHTML = `
+                <div style="width: 80px; height: 80px; border: 5px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #d4af37; animation: spin 1s linear infinite; margin-bottom: 30px;"></div>
+                <div style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Preparing Booking Page</div>
+                <div style="font-size: 16px; opacity: 0.8;">Please wait while we load room details...</div>
+            `;
+            
+            document.body.appendChild(loadingOverlay);
+            
+            // Add CSS for spin animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Redirect after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = 'booking.html';
+            }, 1500);
+        });
+    });
+
+    // Booking button in navigation
+    const bookingBtn = document.querySelector('.booking-btn');
+    bookingBtn.addEventListener('click', () => {
+        window.location.href = 'booking.html';
+    });
+</script>
+</body>
+</html>
